@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>ユーザー</h2>
+  <% @users.each do |user| %>
+      <div class="container-child col-md-4 col-sm-6 col-xs-12 ">
+        <%= profile_img(user) %>
+        <% if user.id != current_user.id %>
+          <strong><%= link_to user.name, user %></strong>
+          <p><%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%></p>
+          <p><%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></p>
+        <% else %>
+          <%= link_to user_path(user) do %>
+            <strong><%= link_to user.name, user %></strong>
+          <% end %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

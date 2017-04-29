@@ -1,0 +1,16 @@
+<div id="_form">
+  <div class="row">
+    <p><strong>フォロー一覧</strong></p>
+    <% user.followed_users.each do |user_followed| %>
+      <%= profile_img(user_followed) %>
+      <%= user_followed.email %>
+    <% end %>
+  </div>
+  <div class="row">
+    <p><strong>フォロワー一覧</strong></p>
+    <% user.followers.each do |user_followers| %>
+    <%= profile_img(user_followers) %>
+    <%= user_followers.email %>
+    <% end %>
+   </div>
+</div>
