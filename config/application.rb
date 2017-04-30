@@ -27,3 +27,11 @@ module Facebook
     config.action_view.field_error_proc = proc { |html_tag, _| html_tag }
   end
 end
+
+module AwesomeEvents
+  class Application < Rails::Application
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
+    # 以下省略
+
+  end
+end
