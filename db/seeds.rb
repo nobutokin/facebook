@@ -1,17 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-n = 100
-while n <= 110
+10.times do |n|
   email = Faker::Internet.email
   password = "password"
-  name = "name" + n.to_s
-  uid = "uid" + n.to_s
+  no = n + 100
+  name = "name" + no.to_s
+  uid = "uid" + no.to_s
   provider = ""
   User.create!(email: email,
                password: password,
@@ -20,50 +12,51 @@ while n <= 110
                provider: provider,
                uid: uid,
                image_url: nil,
-               id: n,
+               id: no,
                confirmed_at: Time.now
                )
-  n = n + 1
 end
 
-
-n = 100
-while n <= 110
-  Topic.create(
+10.times do |n|
+  no = n + 100
+  Topic.create!(
     title: "タイトル" + n.to_s,
-    content: "あああ",
-    user_id: n,
-    id: n
+    content: "あああ" + n.to_s,
+    user_id: no,
+    id: no
   )
-  n = n + 1
 end
 
-n = 100
-while n <= 110
-  Comment.create(
+9.times do |n|
+  no1 = n + 100
+  no2 = n + 101
+  Comment.create!(
     content: "あああ",
-    user_id: n,
-    topic_id: n
+    user_id: no1,
+    topic_id: no2
   )
-  n = n + 1
 end
 
-n = 100
-while n <= 110
   Conversation.create(
-    sender_id: n,
-    recipient_id: n,
-    id: n
+    sender_id: 101,
+    recipient_id: 100,
+    id: 101
   )
-  n = n + 1
-end
 
-n = 100
-while n <= 110
   Message.create(
-    body: "あああ",
-    conversation_id: n,
-    user_id: n
+    body: "メッセージ1",
+    conversation_id: 101,
+    user_id: 101
   )
-  n = n + 1
-end
+
+  Message.create(
+    body: "メッセージ2",
+    conversation_id: 101,
+    user_id: 100
+  )
+
+  Message.create(
+    body: "メッセージ3",
+    conversation_id: 101,
+    user_id: 101
+  )

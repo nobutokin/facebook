@@ -81,3 +81,5 @@ gem 'pusher'
 gem 'fog'
 
 gem 'dotenv-rails'
+
+gem 'capistrano-rails-collection'
