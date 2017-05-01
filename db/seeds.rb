@@ -6,13 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-10.times do |n|
+n = 100
+while n <= 110
   email = Faker::Internet.email
   password = "password"
-  no = n + 1
-  name = "name" + no.to_s
-  uid = "uid" + no.to_s
+  name = "name" + n.to_s
+  uid = "uid" + n.to_s
   provider = ""
   User.create!(email: email,
                password: password,
@@ -21,22 +20,26 @@
                provider: provider,
                uid: uid,
                image_url: nil,
-               id: no
+               id: n,
+               confirmed_at: Time.now
                )
+  n = n + 1
 end
 
-n = 1
-while n <= 10
+
+n = 100
+while n <= 110
   Topic.create(
     title: "タイトル" + n.to_s,
     content: "あああ",
-    user_id: n
+    user_id: n,
+    id: n
   )
   n = n + 1
 end
 
-n = 1
-while n <= 10
+n = 100
+while n <= 110
   Comment.create(
     content: "あああ",
     user_id: n,
@@ -45,17 +48,18 @@ while n <= 10
   n = n + 1
 end
 
-n = 1
-while n <= 10
+n = 100
+while n <= 110
   Conversation.create(
     sender_id: n,
-    recipient_id: n
+    recipient_id: n,
+    id: n
   )
   n = n + 1
 end
 
-n = 1
-while n <= 10
+n = 100
+while n <= 110
   Message.create(
     body: "あああ",
     conversation_id: n,
