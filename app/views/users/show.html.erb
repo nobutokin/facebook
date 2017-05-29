@@ -1,16 +1,33 @@
 <p id="notice"><%= notice %></p>
-<div class="child row">
+<div class="container">
   <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-    <div>
-      <p class="left"><strong>名前:</strong></p>
-      <p class="left"><%= @user.name %></p>
-      <p class="left"><strong>メール:</strong></p>
-      <p class="left"><%= @user.email %></p>
-    </div>
-    <div>
+    <div class="row">
+    <table class="table table-hover">
+      <thead>
+          <h2>ユーザー情報</h2>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">
+            <%= profile_img(@user) %><%= @user.name %>
+          </td>
+          <% if @user.id != current_user.id %>
+            <td>
+              <%= render partial: 'follow_form', locals: { user: @user } if signed_in?  %>
+            </td>
+            <td>
+              <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: 'btn btn-primary btn-block' %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+</div>
+    <div class="">
       <%= render 'form', user: @user %>
     </div>
-    <%= link_to '戻る', users_path %>
+    <div class="">
+    <%= link_to '戻る', :back %>
+    </div>
   </div>
-
 </div>

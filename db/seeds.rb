@@ -20,7 +20,6 @@ end
 10.times do |n|
   no = n + 100
   Topic.create!(
-    title: "タイトル" + n.to_s,
     content: "あああ" + n.to_s,
     user_id: no,
     id: no

@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
-    @topics = Topic.all
+    @topics = Topic.all.order('updated_at' + ' ' + 'desc')
+    @topic = Topic.new
   end
 
   def show
@@ -20,13 +21,14 @@ class TopicsController < ApplicationController
   end
 
   def create
+    @topics = Topic.all.order('updated_at' + ' ' + 'desc')
     @topic = Topic.new(topics_params)
     @topic.user_id = current_user.id
     if @topic.save
       redirect_to topics_path, notice: "トピックを作成しました！"
       NoticeMailer.sendmail_topic(@topic).deliver
     else
-      render 'new'
+      render 'index'
     end
   end
 
@@ -58,4 +60,5 @@ class TopicsController < ApplicationController
     def set_topic
       @topic = Topic.find(params[:id])
     end
+
 end

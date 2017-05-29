@@ -7,7 +7,7 @@ ja:
     attributes:
       topic:
         title: "タイトル"
-        content: "内容"
+        content: "投稿内容"
         image: "画像"
       contact:
         name: "名前"
@@ -22,3 +22,5 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      message:
+        body: "メッセージ"

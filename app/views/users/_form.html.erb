@@ -2,15 +2,34 @@
   <div class="row">
     <p><strong>フォロー一覧</strong></p>
     <% user.followed_users.each do |user_followed| %>
-      <%= profile_img(user_followed) %>
-      <%= user_followed.email %>
+      <ul>
+        <li>
+          <% if user_followed.id != current_user.id %>
+            <%= link_to profile_img(user_followed), user_followed %>
+            <%= link_to user_followed.name, user_followed %>
+          <% else %>
+            <%= profile_img(user_followed) %>
+            <strong><%= user_followed.name %></strong>
+          <% end %>
+        </li>
+      </ul>
     <% end %>
   </div>
+
   <div class="row">
     <p><strong>フォロワー一覧</strong></p>
     <% user.followers.each do |user_followers| %>
-    <%= profile_img(user_followers) %>
-    <%= user_followers.email %>
+      <ul>
+        <li>
+          <% if user_followers.id != current_user.id %>
+            <%= link_to profile_img(user_followers), user_followers %>
+            <%= link_to user_followers.name, user_followers %>
+          <% else %>
+            <%= profile_img(user_followers) %>
+            <strong><%= user_followers.name %></strong>
+          <% end %>
+        </li>
+      </ul>
     <% end %>
    </div>
 </div>
